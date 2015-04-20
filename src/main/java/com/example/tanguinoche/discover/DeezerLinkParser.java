@@ -74,8 +74,8 @@ final class DeezerLinkParser {
         return file.getString("name");
     }
 
-    public URL getImgFromArtist() throws JSONException, MalformedURLException {
-        return new URL(file.getString("picture"));
+    public String getImgFromArtist() throws JSONException, MalformedURLException {
+        return file.getString("picture");
     }
 
     public String getGenreFromArtist() {
@@ -94,7 +94,7 @@ final class DeezerLinkParser {
             JSONArray albumsArray = new JSONArray(albums.getString("data"));
             for (int i = 0; i < albumsArray.length(); i++) {
                 //Contient un unique album
-                Log.d("test parser i :", i+"");
+                //Log.d("test parser i :", i+"");
                 JSONObject album = new JSONObject(albumsArray.getString(i));
                 Album a = new Album();
                 albumsMap.put(album.getString("id"), a);
@@ -104,12 +104,12 @@ final class DeezerLinkParser {
                 a.setCover(album.getString("cover"));
                 a.setGenre(album.getString("genre_id"));
                 //Contient toutes les tracks de l'album
-                Log.d("test parser :", "work");
+                //Log.d("test parser :", "work");
                 JSONObject tracks = openURLToJSONObject(new URL("http://api.deezer.com/album/" + album.getString("id") + "/tracks"));
 
                 JSONArray tracksArray = new JSONArray(tracks.getString("data"));
                 for (int j = 0; j < tracksArray.length(); j++) {
-                    Log.d("test parser j :", j+"");
+                    //Log.d("test parser j :", j+"");
                     //Contient une track
                     JSONObject track = new JSONObject(tracksArray.getString(j));
                     Track t = new Track();

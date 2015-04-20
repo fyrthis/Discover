@@ -1,5 +1,7 @@
 package com.example.tanguinoche.discover;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
@@ -11,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 
 public class Home extends ActionBarActivity {
@@ -32,6 +35,7 @@ public class Home extends ActionBarActivity {
 
 
         new DownloadArtist().execute();
+        new DownloadImageTask().execute();
 
 
     }
@@ -78,6 +82,29 @@ public class Home extends ActionBarActivity {
             nameArtist.setText(a.getName());
             discography.setText(a.getDiscography());
             //picture.setImageDrawable(R.drawable.ic_launcher);
+        }
+    }
+
+    // AsyckTask to download image (url given )
+    private class DownloadImageTask extends AsyncTask<String, String, Bitmap> {
+
+        // laoding picture and put it into bitmap
+        protected Bitmap doInBackground(String... params) {
+            String urldisplay = a.getImg();
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        //after downloading
+        protected void onPostExecute(Bitmap result) {
+            picture.setImageBitmap(result);
         }
     }
 }

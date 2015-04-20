@@ -20,7 +20,7 @@ public class Artist {
 
     private int id;
     private String name;
-    private URL img; //Pourquoi ne pas stocker que le lien ? Et aller chercher l'image au besoin
+    private String img; //Pourquoi ne pas stocker que le lien ? Et aller chercher l'image au besoin
     private String genre; //Idem, pourrait stocker l'url du genre ? mais le nom est important(offline)
     private Map<String, Album> tracks; //A vérifier
 
@@ -50,16 +50,8 @@ public class Artist {
     public String getName(){
         return name;
     }
-    public Drawable getImg(){
-        try {
-            InputStream is = (InputStream) img.getContent();
-            Drawable d = Drawable.createFromStream(is, "picture"+id);
-            return d;
-        } catch (Exception e) {
-            Log.d("Artist :", "getImg");
-            return null; //Sinon renvoyer une image de base, stockée dans l'app
-        }
-
+    public String getImg(){
+        return this.img;
     }
     public String getGenre(){//Pas dispo dans l'api.. Aller voir chez developers.music-story.com
         return genre;
