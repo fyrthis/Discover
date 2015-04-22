@@ -83,7 +83,7 @@ public class Artist {
 
     //De la forme : http://api.deezer.com/artist/27/related
     //Devrait retourner une ArrayList d'artistes
-    public List<Artist> getRelated(){ //TODO : related
+    public List<Artist> getRelated(){ //TODO : related, should be ok
         majParser();
         String[] related = DeezerLinkParser.getInstance().getRelated();
         List<Artist> artistsRelated = new ArrayList<>();
@@ -100,7 +100,10 @@ public class Artist {
     public void getBiography(){
         //psdjf
     } //Pas dispo dans l'api.. Aller voir chez developers.music-story.com
+
+
     public String getDiscography(){
+        majParser();
         StringBuilder sb = new StringBuilder();
         for(Map.Entry<String, Album> entry : tracks.entrySet()) {
             sb.append(entry.getValue().getTitle()); //Nom de l'album

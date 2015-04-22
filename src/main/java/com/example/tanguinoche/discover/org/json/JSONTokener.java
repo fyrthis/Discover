@@ -1,4 +1,4 @@
-package org.json;
+package com.example.tanguinoche.discover.org.json;
 
 import java.io.BufferedReader;
 import java.io.IOException;

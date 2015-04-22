@@ -78,7 +78,7 @@ public class Home extends ActionBarActivity {
 
             return a;
         }
-        protected void onPostExecute(Artist web) {
+        protected void onPostExecute(Artist a) {
             nameArtist.setText(a.getName());
             discography.setText(a.getDiscography());
         }
